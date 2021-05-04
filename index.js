@@ -1,7 +1,7 @@
-const NutriController = require("./controller/NutriController")
-const User = require("./models/User")
-const Antropometry = require("./models/Antropometry")
-const Alimento = require("./models/Alimento")
+const NutriController = require("./src/controller/NutriController")
+const User = require("./src/app/models/User")
+const Antropometry = require("./src/app/models/Antropometry")
+const Alimento = require("./src/app/models/Alimento")
 
 const controller = new NutriController()
 const user = controller.addUser("Victor", "victor@gmail.com", "78931245632", "14/11/1995")

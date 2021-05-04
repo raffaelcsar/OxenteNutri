@@ -1,7 +1,7 @@
-const Antropometry = require("../models/Antropometry");
-const CardapioItem = require("../models/CardapioItem");
-const Refeicao = require("../models/Refeicao");
-const User = require("../models/User");
+const Antropometry = require("../app/models/Antropometry");
+const CardapioItem = require("../app/models/CardapioItem");
+const Refeicao = require("../app/models/Refeicao");
+const User = require("../app/models/User");
 
 module.exports = class NutriController {
     constructor() {
