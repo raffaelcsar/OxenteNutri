@@ -3,8 +3,19 @@ const { AntropometryController } = require('./controller/AntropometryController'
 const { FoodController } = require('./controller/FoodController');
 const { MealController } = require('./controller/MealController');
 const { MealFoodController } = require('./controller/MealFoodController');
+const { CustomerController } = require('./controller/CustomerController');
 
 const routes = require('express').Router();
+
+/**
+ * Gerencia rotas para os devidos Controllers
+ */
+
+routes.get('/customers/', CustomerController.get)
+
+routes.post('/customers/', CustomerController.post)
+
+routes.put('/customers/:id/', CustomerController.update)
 
 // ROUTES FOOD 
 
