@@ -90,10 +90,10 @@ function post(req, res) {
   }
   
   Customer.create({
-    name: name,
-    email: email,
-    govId: govId,
-    birthdate: birthdate
+    name,
+    email,
+    govId,
+    birthdate
   })
   .then(resp => {
     res.status(200).json(resp).send()
@@ -161,13 +161,13 @@ function update(req, res) {
    }
 
    Customer.update({
-     name: name,
-     email: email,
-     govId: govId,
-     birthdate: birthdate
+     name,
+     email,
+     govId,
+     birthdate
    },{
      where: {
-       id: id
+       id
      }
    })
    .then(resp => {
