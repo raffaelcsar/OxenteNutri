@@ -23,9 +23,9 @@ function get(req, res) {
 function post(req, res) {
     const { time, quanty, type } = req.body
     const meal = Meal.create({
-            time: time,
-            quanty: quanty,
-            type: type
+            time,
+            quanty,
+            type
         })
         .then(resp => {
             return res.status(200).json(resp).send()
@@ -36,9 +36,9 @@ function update(req, res) {
     const { time, quanty, type } = req.body
     const { id } = req.params
     const mealup = Meal.update({
-            time: time,
-            quanty: quanty,
-            type: type
+            time,
+            quanty,
+            type
         }, {
             where: { id: id }
         })
