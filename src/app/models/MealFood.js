@@ -1,9 +1,9 @@
-module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define("meal-food", {
-        meal: DataTypes.STRING,
-        food: DataTypes.STRING,
-    });
+const { DataTypes } = require('sequelize')
+const sequelize = require('./index')
 
-    return User;
+const MealFood = sequelize.define("meal-food", {
+    meal: DataTypes.STRING,
+    food: DataTypes.STRING,
+});
 
-}
+module.exports.MealFood = MealFood

@@ -1,10 +1,11 @@
-module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define("antropometry", {
-        weight: DataTypes.STRING,
-        height: DataTypes.STRING,
-        bodyFatPercent: DataTypes.STRING,
-        bodyMusclePercent: DataTypes.STRING,
-    });
+const { DataTypes } = require('sequelize')
+const sequelize = require('./index')
 
-    return User;
-}
+const Antropometry = sequelize.define("antropometry", {
+    weight: DataTypes.STRING,
+    height: DataTypes.STRING,
+    bodyFatPercent: DataTypes.STRING,
+    bodyMusclePercent: DataTypes.STRING,
+});
+
+module.exports.Antropometry = Antropometry
