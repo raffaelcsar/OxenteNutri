@@ -1,9 +1,9 @@
-const Food = require("../app/models/Food")
+const Meal = require("../app/models/Meal")
 const sequelize = require("../app/models/index")
 
 function get(req, res) {
-    const foods = Food.findAll({
-            attributes: ["name", "kcal"]
+    const meals = Meal.findAll({
+            attributes: ["time", "quanty", "type"]
         })
         .then(resp => {
             return res.status(200).json(resp).send()
@@ -13,7 +13,7 @@ function get(req, res) {
 
 
 /**
- * cria um food
+ * cria um meal(Refeição)
  * 
  * @method post
  * @param {Request} req requisição recebida 
@@ -21,10 +21,11 @@ function get(req, res) {
  * @return {Response} responde a requisição
  */
 function post(req, res) {
-    const { name, kcal } = req.body
-    const food = Food.create({
-            name: name,
-            kcal: kcal,
+    const { time, quanty, type } = req.body
+    const meal = Meal.create({
+            time: time,
+            quanty: quanty,
+            type: type
         })
         .then(resp => {
             return res.status(200).json(resp).send()
@@ -32,11 +33,12 @@ function post(req, res) {
 }
 
 function update(req, res) {
-    const { name, kcal } = req.body
+    const { time, quanty, type } = req.body
     const { id } = req.params
-    const foodup = Food.update({
-            name: name,
-            kcal: kcal
+    const mealup = Meal.update({
+            time: time,
+            quanty: quanty,
+            type: type
         }, {
             where: { id: id }
         })
@@ -47,7 +49,7 @@ function update(req, res) {
 
 function del(req, res) {
     const { id } = req.params
-    const fooddel = Food.destroy({
+    const mealdel = Meal.destroy({
             where: { id: id }
         })
         .then(resp => {
@@ -55,7 +57,7 @@ function del(req, res) {
         })
 }
 
-module.exports.FoodController = {
+module.exports.MealController = {
     get,
     post,
     update,
