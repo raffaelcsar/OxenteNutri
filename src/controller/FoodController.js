@@ -21,7 +21,33 @@ function post(req, res) {
         })
 }
 
+function update(req, res) {
+    const { name, kcal } = req.body
+    const { id } = req.params
+    const foodup = Food.update({
+            name: name,
+            kcal: kcal
+        }, {
+            where: { id: id }
+        })
+        .then(resp => {
+            return res.status(200).json(resp).send()
+        })
+}
+
+function del(req, res) {
+    const { id } = req.params
+    const fooddel = Food.destroy({
+            where: { id: id }
+        })
+        .then(resp => {
+            return res.status(200).json(resp).send()
+        })
+}
+
 module.exports.FoodController = {
     get,
     post,
+    update,
+    del
 }
