@@ -1,6 +1,9 @@
 const { Customer } = require("../app/models/Customer");
 const validateCPF = require("../utils/cpf");
 const validateEmail = require("../utils/email");
+const chalk = require('chalk')
+
+const log = console.log.bind(console)
 
 function get(req, res) {
   Customer.findAll({
@@ -28,8 +31,10 @@ function post(req, res) {
     birthdate
   } = req.body
 
-  if (!validateCPF(govId))
+  if (!validateCPF(govId)) {
+    log(chalk.bgRed("ERRO: CPF invalid => USER: ", name, " CPF: ", govId))
     return res.status(422).send("Formato de CPF invalido")
+  }
 
   if(!validateEmail(email))
     return res.status(422).send("Formato de Email invalido")
