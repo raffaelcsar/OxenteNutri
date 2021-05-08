@@ -23,8 +23,8 @@ function get(req, res) {
 function post(req, res) {
     const { mealId, foodId } = req.body
     const mealfood = MealFood.create({
-            mealId: mealId,
-            foodId: foodId
+            mealId,
+            foodId
         })
         .then(resp => {
             return res.status(200).json(resp).send()
@@ -35,8 +35,8 @@ function update(req, res) {
     const { mealId, foodId } = req.body
     const { id } = req.params
     const mealfoodup = MealFood.update({
-            mealId: mealId,
-            foodId: foodId
+            mealId,
+            foodId
         }, {
             where: { id: id }
         })
