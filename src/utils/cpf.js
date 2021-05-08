@@ -1,4 +1,4 @@
-export function validateCPF(cpf) {
+function validateCPF(cpf) {
   let sum
   let rest
   sum = 0
@@ -18,3 +18,5 @@ export function validateCPF(cpf) {
   if (rest != parseInt(cpf.substring(10, 11) ) ) return false
   return true
 }
+
+module.exports = validateCPF
