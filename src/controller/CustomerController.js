@@ -7,6 +7,20 @@ const validateDate = require("../utils/date");
 
 const log = console.log.bind(console)
 
+/**
+ * Controller para um Customer
+ * Gerencia requisições/operações com um Customer
+ * 
+ * @namespace Customer
+ */
+
+/**
+ * Retorna todos os Customers do banco
+ * 
+ * @param {Request} req objeto Request da requisição
+ * @param {Response} res objeto Response da requisição
+ * @return Lista de Customers
+ */
 function get(req, res) {
   Customer.findAll({
     attributes: [
@@ -25,7 +39,23 @@ function get(req, res) {
     })
 }
 
+/**
+ * Cria um Customer
+ * 
+ * @method post
+ * @param {Request} req objeto Request da requisição
+ * @param {Response} res objeto Response da requisição
+ * @returns Customer ID
+ */
 function post(req, res) {
+  /**
+   * Propriedades no body da requisição
+   * 
+   * @property {String} name nome do Customer
+   * @property {String} email email do Customer
+   * @property {String} govId cpf do Customer
+   * @property {String} birthdate data de nascimento do Customer (yyyy-mm-dd)
+   */
   let {
     name,
     email,
@@ -33,6 +63,10 @@ function post(req, res) {
     birthdate
   } = req.body
 
+
+  /**
+   * Remove espaços à esquerda e à direita de name
+   */
   name = name.trim()
 
   if (!validateName(name)) {
