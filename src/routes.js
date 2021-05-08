@@ -1,3 +1,5 @@
+const antropometry = require('./app/models/antropometry');
+const { AntropometryController } = require('./controller/AntropometryController');
 const { FoodController } = require('./controller/FoodController');
 const { MealController } = require('./controller/MealController');
 const { MealFoodController } = require('./controller/MealFoodController');
@@ -34,5 +36,14 @@ routes.put("/mealfoods/:id/", MealFoodController.update)
 
 routes.delete("/mealfoods/:id/", MealFoodController.del)
 
+// ROUTES ANTROPOMETRY
+
+routes.get("/antropometrys/", AntropometryController.get)
+
+routes.post("/antropometrys/", AntropometryController.post)
+
+routes.put("/antropometrys/:id/", AntropometryController.update)
+
+routes.delete("/antropometrys/:id/", AntropometryController.del)
 
 module.exports = routes;
