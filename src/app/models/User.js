@@ -1,14 +1,26 @@
-module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define("User", {
-        name: DataTypes.STRING,
-        email: DataTypes.STRING,
-        password_hash: DataTypes.STRING,
-        crn: DataTypes.STRING,
-    });
+const { DataTypes } = require('sequelize')
+const sequelize = require('./index')
 
-    return User;
+const User = sequelize.define("User", {
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password_hash: DataTypes.STRING,
+    crn: DataTypes.STRING,
+});
 
-}
+module.exports.User = User
+
+// module.exports = (sequelize, DataTypes) => {
+//     const User = sequelize.define("User", {
+//         name: DataTypes.STRING,
+//         email: DataTypes.STRING,
+//         password_hash: DataTypes.STRING,
+//         crn: DataTypes.STRING,
+//     });
+
+//     return User;
+
+// }
 
 
 // module.exports = class User {
