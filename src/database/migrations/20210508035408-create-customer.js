@@ -18,7 +18,7 @@ module.exports = {
           unique: true,
           allowNull: false
       },
-      govId: {
+      gov_id: {
           type: Sequelize.STRING,
           allowNull: false
       },
@@ -26,14 +26,14 @@ module.exports = {
           type: Sequelize.DATE,
           allowNull: false
       },
-      idAntropometry: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'antropometry',
-          key: 'id'
-        }
-      },
+      // idAntropometry: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: false,
+      //   references: {
+      //     model: 'antropometry',
+      //     key: 'id'
+      //   }
+      // },
       created_at: {
           type: Sequelize.DATE,
           allowNull: false
