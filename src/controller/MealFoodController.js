@@ -1,6 +1,8 @@
 const MealFood = require("../app/models/MealFood")
 const sequelize = require("../app/models/index")
 
+
+
 function get(req, res) {
     const mealfoods = MealFood.findAll({
             attributes: ["meal", "food"]
@@ -8,6 +10,17 @@ function get(req, res) {
         .then(resp => {
             return res.status(200).json(resp).send()
         })
+}
+
+function getById(req, res) {
+    const { id } = req.params
+    MealFood.findAll({
+            where: { id }
+        })
+        .then(resp => {
+            return res.status(200).json(resp).send()
+        })
+
 }
 
 
@@ -57,6 +70,7 @@ function del(req, res) {
 
 module.exports.MealFoodController = {
     get,
+    getById,
     post,
     update,
     del
