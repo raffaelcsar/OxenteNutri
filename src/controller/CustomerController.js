@@ -3,6 +3,7 @@ const validateCPF = require("../utils/cpf");
 const validateEmail = require("../utils/email");
 const chalk = require('chalk');
 const validateName = require("../utils/name");
+const validateDate = require("../utils/date");
 
 const log = console.log.bind(console)
 
@@ -47,6 +48,11 @@ function post(req, res) {
   if(!validateEmail(email)) {
     log(chalk.bgRed("ERRO: EMAIL invalid => USER: ", name, " EMAIL: ", email))
     return res.status(422).send("Formato de Email invalido")
+  }
+  
+  if(!validateDate(birthdate)) {
+    log(chalk.bgRed("ERRO: Date invalid => USER: ", name, " Date: ", birthdate))
+    return res.status(422).send("Formato de Data invalido")
   }
   
   Customer.create({
