@@ -1,4 +1,6 @@
 const { Customer } = require("../app/models/Customer");
+const validateCPF = require("../utils/cpf");
+const validateEmail = require("../utils/email");
 
 function get(req, res) {
   Customer.findAll({
@@ -25,6 +27,12 @@ function post(req, res) {
     govId,
     birthdate
   } = req.body
+
+  if (!validateCPF(govId))
+    return res.status(422).send("Formato de CPF invalido")
+
+  if(!validateEmail(email))
+    return res.status(422).send("Formato de Email invalido")
 
   Customer.create({
     name: name,
