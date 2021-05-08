@@ -1,5 +1,6 @@
 const { FoodController } = require('./controller/FoodController');
 const { MealController } = require('./controller/MealController');
+const { MealFoodController } = require('./controller/MealFoodController');
 
 const routes = require('express').Router();
 
@@ -22,5 +23,16 @@ routes.post("/meals/", MealController.post)
 routes.put("/meals/:id/", MealController.update)
 
 routes.delete("/meals/:id/", MealController.del)
+
+// ROUTES MEALFOOD
+
+routes.get("/mealfoods/", MealController.get)
+
+routes.post("/mealfoods/", MealFoodController.post)
+
+routes.put("/mealfoods/:id/", MealFoodController.update)
+
+routes.delete("/mealfoods/:id/", MealFoodController.del)
+
 
 module.exports = routes;
