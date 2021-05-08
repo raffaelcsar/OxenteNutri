@@ -39,7 +39,9 @@ routes.delete("/meals/:id/", MealController.del)
 
 // ROUTES MEALFOOD
 
-routes.get("/mealfoods/", MealController.get)
+routes.get("/mealfoods/", MealFoodController.get)
+
+routes.get("/mealfoods/:id/", MealFoodController.getById)
 
 routes.post("/mealfoods/", MealFoodController.post)
 
