@@ -2,13 +2,22 @@
 
 module.exports = {
     up: async(queryInterface, Sequelize) => {
-        return queryInterface.createTable("meal-food", {
+        return queryInterface.createTable("menu", {
             id: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false
             },
+            userId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'users',
+                    key: 'id'
+                }
+            },
+
             mealId: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
@@ -17,20 +26,11 @@ module.exports = {
                     key: 'id'
                 }
             },
-
-            foodId: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-                references: {
-                    model: 'food',
-                    key: 'id'
-                }
-            },
         })
 
     },
 
     down: async(queryInterface, Sequelize) => {
-        return queryInterface.dropTable("meal-food");
+        return queryInterface.dropTable("menu");
     }
 };

@@ -2,29 +2,36 @@
 
 module.exports = {
     up: async(queryInterface, Sequelize) => {
-        return queryInterface.createTable("users", {
+        return queryInterface.createTable("antropometry", {
             id: {
                 type: Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false
             },
-            name: {
+            userId: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+                references: {
+                    model: 'users',
+                    key: 'id'
+                },
+            },
+            weight: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            email: {
-                type: Sequelize.STRING,
-                unique: true,
-                allowNull: false
-            },
-            password_hash: {
+            height: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            crn: {
+            bodyFatPercent: {
                 type: Sequelize.STRING,
-                unique: true
+                allowNull: false
+            },
+            bodyMusclePercent: {
+                type: Sequelize.STRING,
+                allowNull: false
             },
             created_at: {
                 type: Sequelize.DATE,
@@ -33,12 +40,13 @@ module.exports = {
             updated_at: {
                 type: Sequelize.DATE,
                 allowNull: false
+
             }
         })
 
     },
 
     down: async(queryInterface, Sequelize) => {
-        return queryInterface.dropTable("users");
+        return queryInterface.dropTable("antropometry");
     }
 };
