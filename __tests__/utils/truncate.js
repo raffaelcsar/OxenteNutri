@@ -1,4 +1,4 @@
-const { sequelize } = require('../../src/app/models');
+const sequelize = require('../../src/app/models/index');
 
 module.exports = () => {
     return Promise.all(Object.keys(sequelize.models).map(key => {

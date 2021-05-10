@@ -4,6 +4,7 @@ const { FoodController } = require('./controller/FoodController');
 const { MealController } = require('./controller/MealController');
 const { MealFoodController } = require('./controller/MealFoodController');
 const { CustomerController } = require('./controller/CustomerController');
+const { UserController } = require('./controller/UserController');
 
 const routes = require('express').Router();
 
@@ -58,5 +59,16 @@ routes.post("/antropometrys/", AntropometryController.post)
 routes.put("/antropometrys/:id/", AntropometryController.update)
 
 routes.delete("/antropometrys/:id/", AntropometryController.del)
+
+// ROUTES USER 
+
+routes.get("/user/", UserController.get)
+
+routes.post("/user/", UserController.post)
+
+routes.put("/user/:id/", UserController.update)
+
+
+
 
 module.exports = routes;
