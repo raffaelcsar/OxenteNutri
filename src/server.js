@@ -2,7 +2,7 @@ const app = require('./app');
 const chalk = require('chalk')
 const os = require('os')
 const swaggerUi = require('swagger-ui-express')
-const swaggerFile = require('./swagger_output.json')
+const swaggerFile = require('../swagger_output.json')
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
