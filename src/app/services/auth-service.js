@@ -11,7 +11,7 @@ exports.generateToken = async (data) => {
     })
     .then(resp => {
       console.log(chalk.bgGreen("login realizado com sucesso ", JSON.stringify(data)))
-      return resp.data.token
+      return resp
     })
   // return jwt.sign(data, process.env.APP_SECRET, { expiresIn: '1d' });
 }
