@@ -36,6 +36,15 @@ module.exports.createUser = async function authCreateUser(user) {
   
 }
 
+
+/**
+ * Gera um JWT para um usuario
+ * valido por 24h
+ * 
+ * 
+ * @param {Object} user 
+ * @returns {String}
+ */
 module.exports.loginUser = async function authLoginUser(user) {
   return await axios.post('http://localhost:4000/auth/login/', {...user})
     .catch((err) => {
