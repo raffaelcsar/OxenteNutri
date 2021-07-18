@@ -22,23 +22,27 @@ exports.decodeToken = async (token) => {
 }
 
 exports.authorize = function (req, res, next) {
-    var token = req.headers['Authorization'];
+  var token = req.headers['authorization'];
+  console.log(token)
 
     if (!token) {
-        res.status(401).json({
+      console.log(chalk.bgRed.white("erro ao tentar verificar token ", JSON.stringify(token)))
+        return res.status(401).json({
             message: 'Acesso Restrito'
         });
-    } else {
-        jwt.verify(token, process.env.APP_SECRET, function (error, decoded) {
-            if (error) {
-                res.status(401).json({
-                    message: 'Token Inválido'
-                });
-            } else {
-                next();
-            }
+    } 
+    
+    authservice.verify(token)
+      .catch((err) => {
+        console.log(chalk.bgRed.white("erro no authservice ao tentar verificar token ", JSON.stringify(token)))
+        res.status(401).json({
+          message: 'Token Inválido'
         });
-    }
+      })
+      .then(() => {
+        console.log(chalk.bgGreen("verificado com sucesso "))
+        next()
+      })
 };
 
 exports.isAdmin = function (req, res, next) {

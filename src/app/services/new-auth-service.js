@@ -56,3 +56,18 @@ module.exports.loginUser = async function authLoginUser(user) {
       return resp.data.token
     })
 }
+
+module.exports.verify = async function (token) {
+  return await axios.get('http://localhost:4000/auth/check/', {
+    headers: {'Authorization': token}
+  })
+    .catch((err) => {
+      console.log(chalk.bgRed.white("Erro ao tentar validar token => ", err))
+      return err
+    })
+    .then(resp => {
+      console.log(chalk.bgGreen.white("validate token success"))
+      const {name, email, exp} = resp.data
+      return {name, email, exp}
+    })
+}
