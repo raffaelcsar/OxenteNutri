@@ -1,8 +1,19 @@
 'use strict';
+const chalk = require('chalk');
 const jwt = require('jsonwebtoken');
+const authservice = require('./new-auth-service')
 
 exports.generateToken = async (data) => {
-    return jwt.sign(data, process.env.APP_SECRET, { expiresIn: '1d' });
+  return authservice.loginUser(data)
+    .catch(err => {
+      console.log(chalk.bgRed.white("erro no authservice ao tentar fazer login do usuario ", JSON.stringify(data)))
+      return err
+    })
+    .then(resp => {
+      console.log(chalk.bgGreen("login realizado com sucesso ", JSON.stringify(data)))
+      return resp.data.token
+    })
+  // return jwt.sign(data, process.env.APP_SECRET, { expiresIn: '1d' });
 }
 
 exports.decodeToken = async (token) => {
@@ -11,7 +22,7 @@ exports.decodeToken = async (token) => {
 }
 
 exports.authorize = function (req, res, next) {
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    var token = req.headers['Authorization'];
 
     if (!token) {
         res.status(401).json({
@@ -31,7 +42,7 @@ exports.authorize = function (req, res, next) {
 };
 
 exports.isAdmin = function (req, res, next) {
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    var token = req.headers['Authorization'];
 
     if (!token) {
         res.status(401).json({
