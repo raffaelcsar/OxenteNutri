@@ -6,7 +6,9 @@ const swaggerFile = require('../swagger_output.json')
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
-app.listen(process.env.PORT || 3000, () => {
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {
   const arch = os.arch()
   const plataform = os.platform()
   const type = os.type()
@@ -16,5 +18,6 @@ app.listen(process.env.PORT || 3000, () => {
   console.log(chalk.bgCyan.black(`RAM: ${Math.floor(mem * (10 ** -9))} GB`))
   console.log(chalk.bgCyan.black(`CORES: ${cpus.length}`))
   console.log(chalk.bgCyan.black(`CPU: ${cpus[0].model}`))
+  console.log(chalk.bgCyan.black(`Application running, port ${PORT}`))
 });
 

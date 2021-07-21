@@ -1,12 +1,13 @@
 const { User } = require("../app/models/User")
 const sequelize = require("../app/models/index")
 const bcrypt = require("bcryptjs")
-const authService = require('../app/services/auth-service')
+const authService = require('../app/services/auth-service');
+const chalk = require("chalk");
 
 async function authenticate(req, res){
     try{
 
-        const {email, password} = req.body;
+        const {name, email, password, crn} = req.body;
         const user = await User.findOne({
             where: { email }
         })
@@ -21,7 +22,11 @@ async function authenticate(req, res){
     
     
         const token = await authService.generateToken({ 
-            id: user.id
+            id: user.id,
+            name,
+            email,
+            password,
+            crn
         });
     
      
@@ -30,6 +35,7 @@ async function authenticate(req, res){
             token: token,
         })
     }catch(e){
+      console.log(chalk.bgRed.white("erro ao tentar gerar token para usuario => ", e))
         res.status(500).send({ 
             message: 'Falha ao processar sua requisição',
             erro: e
