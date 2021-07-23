@@ -1,5 +1,6 @@
-const Meal = require("../app/models/Meal")
+const { Meal } = require("../app/models/Meal")
 const sequelize = require("../app/models/index")
+const chalk = require("chalk")
 
 function get(req, res) {
     const meals = Meal.findAll({
@@ -7,6 +8,10 @@ function get(req, res) {
         })
         .then(resp => {
             return res.status(200).json(resp).send()
+        })
+        .catch((err) => {
+          console.log(chalk.bgRed.white("MEAL - FINDALL => ", err))
+          res.status(500).json({msg: "somethins get wrong, try again later"}).send()
         })
 }
 
@@ -22,14 +27,15 @@ function get(req, res) {
  */
 function post(req, res) {
     const { time, quanty, type } = req.body
-    const meal = Meal.create({
-            time,
-            quanty,
-            type
-        })
-        .then(resp => {
-            return res.status(200).json(resp).send()
-        })
+    Meal.create({
+        time,
+        quanty,
+        type
+    })
+    .then(resp => {
+        return res.status(200).json(resp).send()
+    })
+    .catch((err) => res.status(500).json(err).send())
 }
 
 function update(req, res) {
