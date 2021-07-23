@@ -8,6 +8,7 @@ async function authenticate(req, res){
     try{
 
         const {name, email, password, crn} = req.body;
+        console.log(chalk.bgYellow.black(email))
         const user = await User.findOne({
             where: { email }
         })

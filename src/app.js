@@ -3,22 +3,29 @@ require('dotenv').config({
 })
 
 const express = require("express");
+const cors = require('cors')
 
-class AppController {
-    constructor(){
-        this.express = express();
+const app = express()
 
-        this.middlewares();
-        this.routes();
-    }
+app.use(express.json())
+app.use(cors())
+app.use(require("./routes"))
+// class AppController {
+//     constructor(){
+//         this.express = express();
 
-    middlewares(){
-        this.express.use(express.json());
-    }
+//         this.middlewares();
+//         this.routes();
+//     }
 
-    routes(){
-        this.express.use(require("./routes"));
-    }
-}
+//     middlewares(){
+//         this.express.use(express.json());
+//     }
 
-module.exports = new AppController().express;
+//     routes(){
+//         this.express.use(require("./routes"));
+//     }
+// }
+
+// module.exports = new AppController().express;
+module.exports = app;
