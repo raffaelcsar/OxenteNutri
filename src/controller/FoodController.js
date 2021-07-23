@@ -29,6 +29,7 @@ function post(req, res) {
         .then(resp => {
             return res.status(200).json(resp).send()
         })
+        .catch(err => res.status(400).json(err).send())
 }
 
 function update(req, res) {
