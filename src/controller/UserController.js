@@ -5,6 +5,7 @@ const validateEmail = require("../utils/email");
 const chalk = require('chalk');
 const validateName = require("../utils/name");
 const validateDate = require("../utils/date");
+const { createUser } = require("../app/services/new-auth-service");
 
 async function post(req, res) {
 
@@ -46,7 +47,14 @@ async function post(req, res) {
     password_hash: password,
     crn: crn
   }).then(resp => {
-    res.status(200).json(resp).send()
+    createUser({
+      name,
+      email,
+      password,
+      crn
+    }).then(() => {
+      res.status(200).json(resp).send()
+    })
   })
   .catch(err => {
     console.log(err)
